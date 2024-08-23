@@ -1,0 +1,464 @@
+/* Reset and Font */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans Display", sans-serif;
+    background-color: #f5f5f5; /* Light background for better contrast */
+  }
+  
+  
+  /* Old Styles
+  
+  
+  /* Global Styles */
+  .app-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh; /* Use vh for full viewport height */
+    background-color: #EEEDEB;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  /* Global Header */
+  .header {
+    width: 100%;
+    padding: 15px 20px; /* Increased padding for better spacing */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #35374B;
+  }
+  
+  .header-title {
+    color: #fff; /* Darker color for better readability */
+    font-size: 1.5rem; /* Larger font size */
+    font-weight: bold;
+  }
+  
+  /* Buttons */
+  button {
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+  }
+  
+  /* Popup */
+  .popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 25px 35px;
+    border: 1px solid #ddd; /* Softer border color */
+    border-radius: 8px; /* Larger radius for modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensure popup is above other content */
+    width: 85%;
+    max-width: 500px; /* Limit maximum width */
+  }
+  
+  .close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem; /* Larger font size */
+    cursor: pointer;
+  }
+  
+  
+  
+  /* ------------------------------------------------------------ */
+  
+  
+  
+  /* Home Page */
+    /* Home Page Header */
+    #home-page-header {
+        justify-content: space-between;
+  
+    }
+        /* Home Page Header Title */
+    #home-page-header-title{
+        color: whitesmoke;
+    }
+    /* Header Add Budget Button */
+    #add-budget-btn{
+        color: #fff;
+        background-color: darkgoldenrod;
+        margin-left: 30px;
+    }
+    /* Header App Info Button */
+    #app-info-btn {
+        background-color: #ffffff;
+        color: #35374B;
+        border: 2px solid darkgoldenrod; /* Border to match the color */
+        border-radius: 55px; /* Circular button */
+        font-size: 1.1rem;
+        margin-right: 35px;
+    }
+    /* Home Page Popup */
+    #create-new-budget {
+        display: flex;
+        flex-direction: column;
+        width: 85%;
+        display: none;
+    }
+  
+    #create-new-budget > button {
+        margin-top: 15px;
+        width: 200px;
+        background-color: darkgoldenrod;
+        color: #fff;
+    }
+  
+    #create-new-budget > input {
+        width: 350px;
+        height: 35px;
+        padding-left: 12px;
+    }
+  
+    #create-new-budget > span {
+        padding-right: 10px;
+    }
+    
+  
+  /* Home Page Container */
+    /* Budget List Item */
+    /* Home Page Content */
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .budget-button {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 1em;
+    text-align: left;
+    padding: 15px 20px; /* Increased padding for better spacing */
+    background: whitesmoke;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .button-col-1  {
+    display: flex;
+    align-items: center; /* Center align for better layout */
+    border-bottom: 1px solid lightgrey;
+  
+  }
+  
+  .home-budget-name {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    color: #35374B;
+  }
+  
+  .button-col-2  {
+    display: flex;
+    align-items: center; /* Center align for better layout */
+    
+  
+  }
+  
+  .button-col-3 {
+    display: flex;
+    align-items: center; /* Center align for better layout */
+  }
+  
+  .home-salary-container {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    padding: 10px 0 10px 0;
+    height: 45px;
+  
+  }
+  
+  .home-expenses-container {
+    display: flex;
+    width: 90%;
+    padding: 0 0 10px 0;
+    height: 45px;
+  }
+  
+  .home-money-left-container {
+    display: flex;
+    width: 100%;
+    padding: 0 0 10px 0;
+    height: 45px;
+  }
+  
+  
+  .home-salary-label, .home-expenses-label, .home-money-left-label {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .home-salary-value, .home-expenses-value, .home-money-left-value {
+    margin-left: 0.5em;
+    font-size: 1.1rem;
+  }
+  
+  .home-expenses-value {
+    color: red;
+  }
+  
+  .home-money-left-value {
+    color: green;
+  }
+  
+  
+  
+  /* ------------------------------------------------------------ */
+  /* ------------------------------------------------------------ */        
+  
+  
+  /* Budget Details Page */
+  /* Budget Details Page Header */
+  
+  /* Budget Details Page Create Expense Popup */
+  #create-expense {
+    display: flex;
+    width: 85%;
+    display: none;
+  
+  }
+  
+  #create-expense > button {
+    margin-top: 15px;
+    width: 200px;
+    background-color: darkgoldenrod;
+    color: #fff;
+  }
+  
+  #create-expense > input {
+    width: 200px;
+    height: 35px;
+    padding-left: 12px;
+    margin-top: 10px;
+  }
+  
+  #create-expense > select {
+    width: 150px;
+    height: 38px;
+    padding-left: 12px;
+    
+  }
+  
+  #create-expense > span {
+    padding-right: 10px;
+  }
+  
+  
+  /* Budget Details Page Create Income Popup */
+  #create-income {
+    display: flex;
+    width: 85%;
+    display: none;
+  
+  }
+  
+  #create-income > button {
+    margin-top: 15px;
+    width: 200px;
+    background-color: darkgoldenrod;
+    color: #fff;
+  }
+  
+  #income-type {
+    width: 200px;
+    height: 35px;
+    padding-left: 12px;
+    margin-top: 10px;
+  }
+  
+  #income-input-amount {
+    width: 100px;
+    height: 35px;
+    padding-left: 12px;
+    margin-top: 10px;
+  }
+  
+  #create-income > span {
+    padding-right: 10px;
+  }
+  
+  
+  
+  /* Budget Details Page Header */
+  
+  #detail-page-header {
+    justify-content: space-between;
+  }
+  
+  #budget-details-page-header-title {
+    color: #fff;
+    font-weight: 500;
+    font-size: x-large;
+    width: 200px;
+    margin-right: 35px;
+  }
+  
+  
+  #home-btn {
+    background-color: goldenrod;
+    margin-right: 12px;
+    margin-left: -5px;
+  }
+  
+  
+  
+  #new-income-btn {
+    color: #fff;
+    background-color: goldenrod;
+    width: 120px;
+    margin-left: -55px;
+    
+  
+  }
+  
+  #new-expense-btn {
+    color: #fff;
+    background-color: goldenrod;
+    width: 120px; /* Use auto width for better button sizing */
+    margin-right: 30px;
+    margin-left: 10px;
+    
+  }
+  
+  
+  /* Top Section */
+  .top-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #EEEDEB;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .widget {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px; /* Limit maximum width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px;
+    background-color: whitesmoke; /* White background for widgets */
+  }
+  
+  #widget-content-area {
+    display: flex;
+    justify-content: space-between; /* Space between for better layout */
+    width: 100%;
+  }
+  
+  #money-left-area, #total-income-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 48%; /* Adjust width for better spacing */
+  }
+  
+  #money-left-area h2 {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  /* Progress Bar */
+  .progress-bar {
+    display: flex;
+    margin: 10px 0;
+    width: 100%;
+    background-color: #e0e0e0; /* Light background for the bar */
+    border-radius: 5px;
+  }
+  
+  .bar-inside {
+    background-color: #00bcd4; /* More modern color */
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 70%; /* Example width */
+    text-align: center;
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tab-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ddd; /* Border for separation */
+  }
+  
+  .tab-link {
+    padding: 10px 20px;
+    margin: 0;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd; /* Consistent border color */
+    border-bottom: none; /* Remove bottom border */
+    transition: background-color 0.3s ease;
+    width: 150px;
+    height: 25px;
+    color: #35374B;
+    font-weight: bold;
+  }
+  
+  .tab-link.active {
+    background-color: #ffffff;
+    border-bottom: 2px solid goldenrod; /* Match primary color */
+  }
+  
+  .tab-content {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  
+  
+  /* Footer */
+  .fds-footer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    background-color: #fff; /* White background for footer */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .tagline {
+    color: #35374B;
+    font-family: "Shantell Sans", cursive;
+    font-weight: lighter;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  
+  
