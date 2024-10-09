@@ -1,23 +1,17 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Popup from "./Popup";
+import { useState } from "react";
+import PropTypes from 'prop-types';
+import Popup from './Popup';
 
-function BudgetDetails({ budgetId, goToHome, setBudgets, budgets }) {
-    const [budget, setBudget] = useState(() =>
-        budgets.find((b) => b.id === budgetId)
-    );
+function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
     const [activeTab, setActiveTab] = useState("expenses");
     const [incomePopupOpen, setIncomePopupOpen] = useState(false);
     const [expensePopupOpen, setExpensePopupOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+
     const [incomeType, setIncomeType] = useState("");
     const [incomeAmount, setIncomeAmount] = useState("");
     const [expenseType, setExpenseType] = useState("");
     const [expenseAmount, setExpenseAmount] = useState("");
-
-    useEffect(() => {
-        const updatedBudget = budgets.find((b) => b.id === budgetId);
-        setBudget(updatedBudget);
-    }, [budgets, budgetId]);
 
     const addIncome = () => {
         if (incomeType && incomeAmount) {
@@ -58,36 +52,35 @@ function BudgetDetails({ budgetId, goToHome, setBudgets, budgets }) {
         setBudgets(updatedBudgets);
     };
 
-    const handleIncomeClick = () => {
-        setActiveTab("income");
-        setIncomePopupOpen(true);
+    const handleMenuClick = (option) => {
+        if (option === 'income') {
+            setIncomePopupOpen(true);
+        } else if (option === 'expense') {
+            setExpensePopupOpen(true);
+        }
+        setMenuOpen(false);
     };
-
-    const handleExpenseClick = () => {
-        setActiveTab("expenses");
-        setExpensePopupOpen(true);
-    };
-
-    if (!budget) return null;
 
     return (
         <div className="budget-details-page">
             <div className="details-header">
-                <button className="home-btn" onClick={goToHome}>🏠</button>
+                <button className="home-btn" onClick={goToHome}>🏠 Back to Home</button>
                 <h1 className="details-header-title">{budget.name}</h1>
-                <button className="new-income-btn" onClick={handleIncomeClick}>+ Income</button>
-                <button className="new-expense-btn" onClick={handleExpenseClick}>+ Expense</button>
             </div>
 
             <div className="top-section">
                 <div className="widget">
                     <div id="money-left-area">
                         <p>Money Left</p>
-                        <h2>${budget.moneyRem.toFixed(2)}</h2>
+                        <h2>${(budget.moneyRem ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if moneyRem is null/undefined */}
                     </div>
                     <div id="total-income-area">
-                        <p>Total Budget</p>
-                        <h2>${budget.s_total.toFixed(2)}</h2>
+                        <p>Total Income</p>
+                        <h2>${(budget.s_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if s_total is null/undefined */}
+                    </div>
+                    <div id="total-expense-area">
+                        <p>Total Expenses</p>
+                        <h2>${(budget.e_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if e_total is null/undefined */}
                     </div>
                 </div>
             </div>
@@ -117,7 +110,7 @@ function BudgetDetails({ budgetId, goToHome, setBudgets, budgets }) {
                             <ul>
                                 {budget.expenses.map((expense, index) => (
                                     <li key={index}>
-                                        {expense.type}: ${expense.amount.toFixed(2)}
+                                        {expense.type}: ${(expense.amount ?? 0).toFixed(2)} {/* Fallback to 0 if amount is null/undefined */}
                                     </li>
                                 ))}
                             </ul>
@@ -130,7 +123,7 @@ function BudgetDetails({ budgetId, goToHome, setBudgets, budgets }) {
                             <ul>
                                 {budget.salary.map((income, index) => (
                                     <li key={index}>
-                                        {income.type}: ${income.amount.toFixed(2)}
+                                        {income.type}: ${(income.amount ?? 0).toFixed(2)} {/* Fallback to 0 if amount is null/undefined */}
                                     </li>
                                 ))}
                             </ul>
@@ -139,14 +132,23 @@ function BudgetDetails({ budgetId, goToHome, setBudgets, budgets }) {
                 </div>
             </div>
 
+            <button className="floating-button" onClick={() => setMenuOpen(!menuOpen)}>+</button>
+
+            {menuOpen && (
+                <div className="floating-menu">
+                    <button onClick={() => handleMenuClick('income')}>Add Income</button>
+                    <button onClick={() => handleMenuClick('expense')}>Add Expense</button>
+                </div>
+            )}
+
             {incomePopupOpen && (
                 <Popup closePopup={() => setIncomePopupOpen(false)}>
-                    <h2>New Income</h2>
+                    <h2>Add New Income</h2>
                     <input
                         type="text"
                         value={incomeType}
                         onChange={(e) => setIncomeType(e.target.value)}
-                        placeholder="Income Name"
+                        placeholder="Income Type"
                     />
                     <input
                         type="number"
@@ -160,7 +162,7 @@ function BudgetDetails({ budgetId, goToHome, setBudgets, budgets }) {
 
             {expensePopupOpen && (
                 <Popup closePopup={() => setExpensePopupOpen(false)}>
-                    <h2>New Expense</h2>
+                    <h2>Add New Expense</h2>
                     <input
                         type="text"
                         value={expenseType}
@@ -181,10 +183,28 @@ function BudgetDetails({ budgetId, goToHome, setBudgets, budgets }) {
 }
 
 BudgetDetails.propTypes = {
-    budgetId: PropTypes.number.isRequired,
-    goToHome: PropTypes.func.isRequired,
-    setBudgets: PropTypes.func.isRequired,
+    budget: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        s_total: PropTypes.number.isRequired,
+        e_total: PropTypes.number.isRequired,
+        moneyRem: PropTypes.number.isRequired,
+        salary: PropTypes.arrayOf(
+            PropTypes.shape({
+                type: PropTypes.string.isRequired,
+                amount: PropTypes.number.isRequired,
+            })
+        ),
+        expenses: PropTypes.arrayOf(
+            PropTypes.shape({
+                type: PropTypes.string.isRequired,
+                amount: PropTypes.number.isRequired,
+            })
+        ),
+    }).isRequired,
     budgets: PropTypes.array.isRequired,
+    setBudgets: PropTypes.func.isRequired,
+    goToHome: PropTypes.func.isRequired,
 };
 
 export default BudgetDetails;

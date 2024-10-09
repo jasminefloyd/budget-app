@@ -1,9 +1,9 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Popup from "./Popup";
 import BudgetItem from "./BudgetItem";
 
-function HomePage({ budgets, createBudget, openBudget }) {
+function Home({ budgets, createBudget, openBudget }) {
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [budgetName, setBudgetName] = useState("");
 
@@ -18,7 +18,7 @@ function HomePage({ budgets, createBudget, openBudget }) {
     return (
         <div className="home-page">
             <div className="header">
-                <h1 className="header-title">Floyd&apos;s Budget App</h1>
+                <h1 className="header-title">Pocket Budget</h1>
                 <button className="new-budget-btn" onClick={() => setPopupOpen(true)}>+ Add New</button>
                 <button className="app-info-btn">?</button>
             </div>
@@ -32,7 +32,7 @@ function HomePage({ budgets, createBudget, openBudget }) {
                     />
                 ))}
             </div>
-
+            
             {isPopupOpen && (
                 <Popup closePopup={() => setPopupOpen(false)}>
                     <h2>Create a New Budget</h2>
@@ -49,10 +49,10 @@ function HomePage({ budgets, createBudget, openBudget }) {
     );
 }
 
-HomePage.propTypes = {
+Home.propTypes = {
     budgets: PropTypes.array.isRequired,
     createBudget: PropTypes.func.isRequired,
     openBudget: PropTypes.func.isRequired,
 };
 
-export default HomePage;
+export default Home;
