@@ -67,29 +67,29 @@ html, body {
 }
 
 /* Buttons */
-button {
+.new-budget-btn {
+  display: flex;
   border: none;
   cursor: pointer;
   border-radius: 8px;
   font-size: 1rem;
   transition: background-color 0.3s ease;
-}
-
-.new-budget-btn {
   color: #fff;
   background-color: darkgoldenrod;
+  padding: 10px;
 }
 
 .app-info-btn {
-  display: none;
-  background-color: #ffffff;
-  color: #35374B;
+  display: flex;
   border: 2px solid darkgoldenrod;
-  border-radius: 50%;
+  cursor: pointer;
+  border-radius: 50px;
   font-size: 1rem;
+  transition: background-color 0.3s ease;
+  color: #35374B;
+  background-color: #ffffff;
   width: 40px;
   height: 40px;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -106,8 +106,7 @@ button {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  width: 90%;
-  max-width: 400px;
+  width: 85%;
 }
 
 .close-popup {
@@ -122,12 +121,17 @@ button {
   margin-top: 15px;
   background-color: darkgoldenrod;
   color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  padding: 10px;
 }
 
 .popup > input {
   width: 100%;
   height: 40px;
-  padding-left: 12px;
   font-size: 1rem;
 }
 
