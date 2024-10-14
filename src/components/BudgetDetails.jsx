@@ -64,21 +64,21 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
     return (
         <div className="budget-details-page">
             <div className="details-header">
-                <button className="home-btn" onClick={goToHome}>🏠 Back to Home</button>
+                <button className="home-btn" onClick={goToHome}>🏠 Home</button>
                 <h1 className="details-header-title">{budget.name}</h1>
             </div>
 
             <div className="top-section">
                 <div className="widget">
-                    <div id="money-left-area">
+                    <div className="money-left-area">
                         <p>Money Left</p>
                         <h2>${(budget.moneyRem ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if moneyRem is null/undefined */}
                     </div>
-                    <div id="total-income-area">
+                    <div className="total-income-area">
                         <p>Total Income</p>
                         <h2>${(budget.s_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if s_total is null/undefined */}
                     </div>
-                    <div id="total-expense-area">
+                    <div className="total-expense-area">
                         <p>Total Expenses</p>
                         <h2>${(budget.e_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if e_total is null/undefined */}
                     </div>

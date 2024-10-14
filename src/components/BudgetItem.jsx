@@ -6,17 +6,18 @@ function BudgetItem({ budget, openBudget }) {
             <div className="button-col-1">
                 <p className="home-budget-name">{budget.name}</p>
             </div>
+            <hr />
             <div className="button-col-2">
                 <p className="home-salary-label">
-                    Total Salary: ${(budget.s_total ?? 0).toFixed(2)}
+                    Total Salary: <span className='home-salary-amt'>${(budget.s_total ?? 0).toFixed(2)}</span>
                 </p>
             </div>
             <div className="button-col-3">
                 <p className="home-expense-label">
-                    Expenses: ${(budget.e_total ?? 0).toFixed(2)}
+                    Expenses: <span className='home-expense-amt'>${(budget.e_total ?? 0).toFixed(2)}</span>
                 </p>
                 <p className="home-money-left-label">
-                    Money Left: ${(budget.moneyRem ?? 0).toFixed(2)}
+                    Money Left: <span className='home-money-left-amt'>${(budget.moneyRem ?? 0).toFixed(2)}</span>
                 </p>
             </div>
         </div>
