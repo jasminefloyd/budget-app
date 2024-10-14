@@ -74,13 +74,15 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                         <p>Money Left</p>
                         <h2>${(budget.moneyRem ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if moneyRem is null/undefined */}
                     </div>
-                    <div className="total-income-area">
-                        <p>Total Income</p>
-                        <h2>${(budget.s_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if s_total is null/undefined */}
-                    </div>
-                    <div className="total-expense-area">
-                        <p>Total Expenses</p>
-                        <h2>${(budget.e_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if e_total is null/undefined */}
+                    <div className="top-income-expense">
+                        <div className="total-income-area">
+                            <p>Total Income</p>
+                            <h2>${(budget.s_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if s_total is null/undefined */}
+                        </div>
+                        <div className="total-expense-area">
+                            <p>Total Expenses</p>
+                            <h2>${(budget.e_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if e_total is null/undefined */}
+                        </div>
                     </div>
                 </div>
             </div>

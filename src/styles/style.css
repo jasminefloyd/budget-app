@@ -18,6 +18,8 @@ html, body {
   height: 100vh; /* Use full viewport height */
   background-color: #EEEDEB;
   box-sizing: border-box;
+  font-family: "Noto Sans Display", sans-serif;
+
 }
 
 /* Splash Screen */
@@ -27,7 +29,7 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #d8e6f2 0%, #bccfdf 100%);
+  background: linear-gradient(135deg, #f2e8d8 0%, #dfccbc 100%);
   color: #fff;
   animation: fadeIn 1.5s ease-in-out;
   padding: 20px;
@@ -250,9 +252,11 @@ html, body {
 .money-left-area {
   display: flex;
   flex-direction: column;
-  text-align: right;
   width: 100%;
-  border: orangered solid 2px;
+}
+
+.top-income-expense {
+  display: flex;
 }
 
 .total-income-area {
@@ -260,7 +264,6 @@ html, body {
   flex-direction: column;
   text-align: left;
   width: 100%;
-  border: orangered solid 2px;
 }
 
 .total-expense-area {
@@ -268,7 +271,6 @@ html, body {
   flex-direction: column;
   text-align: left;
   width: 100%;
-  border: orangered solid 2px;
 }
 
 .money-left-area > h2 {
