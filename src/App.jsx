@@ -5,6 +5,7 @@ import BudgetDetails from './components/BudgetDetails';
 import SplashScreen from './components/Splash'; 
 
 function App() {
+    
     const [budgets, setBudgets] = useState(() => {
         const savedBudgets = localStorage.getItem('budgets');
         return savedBudgets ? JSON.parse(savedBudgets) : [];
@@ -31,16 +32,27 @@ function App() {
             name,
             salary: [],
             expenses: [],
-            s_total: 0,  // Initialize as 0 to avoid null issues
-            e_total: 0,  // Initialize as 0 to avoid null issues
-            moneyRem: 0,  // Initialize as 0 to avoid null issues
+            s_total: 0,
+            e_total: 0,
+            moneyRem: 0,
         };
         setBudgets([...budgets, newBudget]);
     };
 
     const handleBudgetClick = (budget) => {
-        setCurrentBudget(budget);  
+        setCurrentBudget(budget);
         setView("details");
+    };
+
+    const handleUpdateBudgets = (updatedBudget) => {
+        const updatedBudgets = budgets.map(b =>
+            b.id === updatedBudget.id ? updatedBudget : b
+        );
+        setBudgets(updatedBudgets);
+
+        // Update current budget as well
+        const updatedCurrentBudget = updatedBudgets.find(b => b.id === updatedBudget.id);
+        setCurrentBudget(updatedCurrentBudget);  // Ensure this gets updated
     };
 
     if (loading) {
@@ -60,7 +72,7 @@ function App() {
                 <BudgetDetails
                     budget={currentBudget}
                     budgets={budgets}
-                    setBudgets={setBudgets}
+                    setBudgets={handleUpdateBudgets} 
                     goToHome={() => setView("home")}
                 />
             )}

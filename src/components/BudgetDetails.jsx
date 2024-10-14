@@ -22,7 +22,7 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                 s_total: budget.s_total + incomeAmt,
                 moneyRem: budget.moneyRem + incomeAmt,
             };
-            updateBudgets(updatedBudget);
+            updateBudgetState(updatedBudget);
             setIncomePopupOpen(false);
             setIncomeType("");
             setIncomeAmount("");
@@ -38,18 +38,18 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                 e_total: budget.e_total + expenseAmt,
                 moneyRem: budget.moneyRem - expenseAmt,
             };
-            updateBudgets(updatedBudget);
+            updateBudgetState(updatedBudget);
             setExpensePopupOpen(false);
             setExpenseType("");
             setExpenseAmount("");
         }
     };
 
-    const updateBudgets = (updatedBudget) => {
+    const updateBudgetState = (updatedBudget) => {
         const updatedBudgets = budgets.map((b) =>
             b.id === updatedBudget.id ? updatedBudget : b
         );
-        setBudgets(updatedBudgets);
+        setBudgets(updatedBudgets); // This will trigger a re-render in the parent component
     };
 
     const handleMenuClick = (option) => {
@@ -72,16 +72,16 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                 <div className="widget">
                     <div className="money-left-area">
                         <p>Money Left</p>
-                        <h2>${(budget.moneyRem ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if moneyRem is null/undefined */}
+                        <h2>${(budget.moneyRem ?? 0).toFixed(2)}</h2>
                     </div>
                     <div className="top-income-expense">
                         <div className="total-income-area">
                             <p>Total Income</p>
-                            <h2>${(budget.s_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if s_total is null/undefined */}
+                            <h2>${(budget.s_total ?? 0).toFixed(2)}</h2>
                         </div>
                         <div className="total-expense-area">
                             <p>Total Expenses</p>
-                            <h2>${(budget.e_total ?? 0).toFixed(2)}</h2> {/* Fallback to 0 if e_total is null/undefined */}
+                            <h2>${(budget.e_total ?? 0).toFixed(2)}</h2>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                             <ul>
                                 {budget.expenses.map((expense, index) => (
                                     <li key={index}>
-                                        {expense.type}: ${(expense.amount ?? 0).toFixed(2)} {/* Fallback to 0 if amount is null/undefined */}
+                                        {expense.type}: ${(expense.amount ?? 0).toFixed(2)}
                                     </li>
                                 ))}
                             </ul>
@@ -125,7 +125,7 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                             <ul>
                                 {budget.salary.map((income, index) => (
                                     <li key={index}>
-                                        {income.type}: ${(income.amount ?? 0).toFixed(2)} {/* Fallback to 0 if amount is null/undefined */}
+                                        {income.type}: ${(income.amount ?? 0).toFixed(2)}
                                     </li>
                                 ))}
                             </ul>
@@ -191,18 +191,8 @@ BudgetDetails.propTypes = {
         s_total: PropTypes.number.isRequired,
         e_total: PropTypes.number.isRequired,
         moneyRem: PropTypes.number.isRequired,
-        salary: PropTypes.arrayOf(
-            PropTypes.shape({
-                type: PropTypes.string.isRequired,
-                amount: PropTypes.number.isRequired,
-            })
-        ),
-        expenses: PropTypes.arrayOf(
-            PropTypes.shape({
-                type: PropTypes.string.isRequired,
-                amount: PropTypes.number.isRequired,
-            })
-        ),
+        salary: PropTypes.array.isRequired,
+        expenses: PropTypes.array.isRequired,
     }).isRequired,
     budgets: PropTypes.array.isRequired,
     setBudgets: PropTypes.func.isRequired,

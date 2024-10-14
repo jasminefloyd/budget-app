@@ -326,21 +326,7 @@ html, body {
 }
 
 /* Progress Bar */
-.progress-bar {
-  display: flex;
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-}
 
-.bar-inside {
-  background-color: #00bcd4;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  width: 70%; /* Example width */
-}
 
 /* Animations */
 @keyframes fadeIn {
