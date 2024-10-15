@@ -13,6 +13,7 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
     const [expenseType, setExpenseType] = useState("");
     const [expenseAmount, setExpenseAmount] = useState("");
 
+    // Adds new income and updates the budget
     const addIncome = () => {
         if (incomeType && incomeAmount) {
             const incomeAmt = parseFloat(incomeAmount);
@@ -22,13 +23,14 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                 s_total: budget.s_total + incomeAmt,
                 moneyRem: budget.moneyRem + incomeAmt,
             };
-            updateBudgetState(updatedBudget);
+            updateBudgetState(updatedBudget);  // Trigger state update
             setIncomePopupOpen(false);
             setIncomeType("");
             setIncomeAmount("");
         }
     };
 
+    // Adds new expense and updates the budget
     const addExpense = () => {
         if (expenseType && expenseAmount) {
             const expenseAmt = parseFloat(expenseAmount);
@@ -38,20 +40,22 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
                 e_total: budget.e_total + expenseAmt,
                 moneyRem: budget.moneyRem - expenseAmt,
             };
-            updateBudgetState(updatedBudget);
+            updateBudgetState(updatedBudget);  // Trigger state update
             setExpensePopupOpen(false);
             setExpenseType("");
             setExpenseAmount("");
         }
     };
 
+    // This function updates the entire budgets array immutably
     const updateBudgetState = (updatedBudget) => {
         const updatedBudgets = budgets.map((b) =>
             b.id === updatedBudget.id ? updatedBudget : b
         );
-        setBudgets(updatedBudgets); // This will trigger a re-render in the parent component
+        setBudgets([...updatedBudgets]);  // Ensure a new array is created for re-render
     };
 
+    // Handles the menu option for adding income or expense
     const handleMenuClick = (option) => {
         if (option === 'income') {
             setIncomePopupOpen(true);
