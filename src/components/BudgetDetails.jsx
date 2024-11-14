@@ -74,19 +74,19 @@ function BudgetDetails({ budget, budgets, setBudgets, goToHome }) {
 
             <div className="top-section">
                 <div className="widget">
-                    <div className="money-left-area">
-                        <p>Money Left</p>
-                        <h2>${(budget.moneyRem ?? 0).toFixed(2)}</h2>
-                    </div>
                     <div className="top-income-expense">
                         <div className="total-income-area">
-                            <p>Total Income</p>
-                            <h2>${(budget.s_total ?? 0).toFixed(2)}</h2>
+                            <h2>Total Income</h2>
+                            <p>${(budget.s_total ?? 0).toFixed(2)}</p>
                         </div>
                         <div className="total-expense-area">
-                            <p>Total Expenses</p>
-                            <h2>${(budget.e_total ?? 0).toFixed(2)}</h2>
+                            <h2>Total Expenses</h2>
+                            <p>${(budget.e_total ?? 0).toFixed(2)}</p>
                         </div>
+                    </div>
+                    <div className="money-left-area">
+                        <h2>Money Left</h2>
+                        <p>${(budget.moneyRem ?? 0).toFixed(2)}</p>
                     </div>
                 </div>
             </div>
